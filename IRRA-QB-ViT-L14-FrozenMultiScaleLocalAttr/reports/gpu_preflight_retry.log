@@ -1,0 +1,28 @@
+Training Model with ['sdm', 'map'] tasks
+Training Model with ['sdm', 'map'] tasks
+Traceback (most recent call last):
+  File "scripts/preflight.py", line 334, in <module>
+    if __name__ == '__main__':
+  File "scripts/preflight.py", line 230, in main
+    with torch.inference_mode():
+  File "/root/workplace/UPAR-Challenge-2027-main/IRRA-QB-ViT-L14-FrozenMultiScaleLocalAttr/upar/frozen_multiscale.py", line 106, in image_tokens_and_scales
+    final, intermediate = self.base_model.visual(images, return_intermediate=True)
+  File "/opt/conda/lib/python3.7/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/root/workplace/UPAR-Challenge-2027-main/IRRA-QB-ViT-L14-FrozenMultiScaleLocalAttr/model/clip_model.py", line 251, in forward
+    x = block(x)
+  File "/opt/conda/lib/python3.7/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/root/workplace/UPAR-Challenge-2027-main/IRRA-QB-ViT-L14-FrozenMultiScaleLocalAttr/model/clip_model.py", line 194, in forward
+    x = x + self.attention(self.ln_1(x))
+  File "/root/workplace/UPAR-Challenge-2027-main/IRRA-QB-ViT-L14-FrozenMultiScaleLocalAttr/model/clip_model.py", line 191, in attention
+    return self.attn(x, x, x, need_weights=False, attn_mask=self.attn_mask)[0]
+  File "/opt/conda/lib/python3.7/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/opt/conda/lib/python3.7/site-packages/torch/nn/modules/activation.py", line 1160, in forward
+    attn_mask=attn_mask, average_attn_weights=average_attn_weights)
+  File "/opt/conda/lib/python3.7/site-packages/torch/nn/functional.py", line 5066, in multi_head_attention_forward
+    q, k, v = _in_projection_packed(query, key, value, in_proj_weight, in_proj_bias)
+  File "/opt/conda/lib/python3.7/site-packages/torch/nn/functional.py", line 4745, in _in_projection_packed
+    return linear(q, w, b).chunk(3, dim=-1)
+KeyboardInterrupt

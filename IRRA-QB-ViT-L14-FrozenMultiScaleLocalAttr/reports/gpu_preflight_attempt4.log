@@ -1,0 +1,20 @@
+Training Model with ['sdm', 'map'] tasks
+Training Model with ['sdm', 'map'] tasks
+Traceback (most recent call last):
+  File "scripts/preflight.py", line 343, in <module>
+    main()
+  File "scripts/preflight.py", line 239, in main
+    final3, intermediate3 = model.image_tokens_and_scales(images3)
+  File "/root/workplace/UPAR-Challenge-2027-main/IRRA-QB-ViT-L14-FrozenMultiScaleLocalAttr/upar/frozen_multiscale.py", line 106, in image_tokens_and_scales
+    final, intermediate = self.base_model.visual(images, return_intermediate=True)
+  File "/opt/conda/lib/python3.7/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/root/workplace/UPAR-Challenge-2027-main/IRRA-QB-ViT-L14-FrozenMultiScaleLocalAttr/model/clip_model.py", line 238, in forward
+    x = self.conv1(x)  # shape = [*, width, grid, grid]
+  File "/opt/conda/lib/python3.7/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/opt/conda/lib/python3.7/site-packages/torch/nn/modules/conv.py", line 457, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "/opt/conda/lib/python3.7/site-packages/torch/nn/modules/conv.py", line 454, in _conv_forward
+    self.padding, self.dilation, self.groups)
+KeyboardInterrupt

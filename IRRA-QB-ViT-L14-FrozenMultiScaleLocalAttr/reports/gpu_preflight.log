@@ -1,0 +1,13 @@
+Training Model with ['sdm', 'map'] tasks
+Traceback (most recent call last):
+  File "scripts/preflight.py", line 328, in <module>
+    main()
+  File "scripts/preflight.py", line 168, in main
+    train_split = UPARSplit.read(data_root, 'train')
+  File "/root/workplace/UPAR-Challenge-2027-main/IRRA-QB-ViT-L14-FrozenMultiScaleLocalAttr/upar/data.py", line 100, in read
+    if not image_path.is_file():
+  File "/opt/conda/lib/python3.7/pathlib.py", line 1387, in is_file
+    return S_ISREG(self.stat().st_mode)
+  File "/opt/conda/lib/python3.7/pathlib.py", line 1183, in stat
+    return self._accessor.stat(self)
+KeyboardInterrupt

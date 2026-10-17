@@ -1,0 +1,27 @@
+# Model weights
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+
+# Submission archives
+*.zip
+
+# Training outputs
+**/experiments/
+**/checkpoints/
+**/logs/
+**/runs/
+
+# Datasets
+**/data/
+**/datasets/
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Environment
+.env
+.venv/

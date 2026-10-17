@@ -1,0 +1,18 @@
+Training Model with ['sdm', 'map'] tasks
+Training Model with ['sdm', 'map'] tasks
+Traceback (most recent call last):
+  File "scripts/preflight.py", line 338, in <module>
+    main()
+  File "scripts/preflight.py", line 217, in main
+    visible_gpu(require_empty=False)
+  File "scripts/preflight.py", line 51, in visible_gpu
+    universal_newlines=True, timeout=30, check=True)
+  File "/opt/conda/lib/python3.7/subprocess.py", line 490, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+  File "/opt/conda/lib/python3.7/subprocess.py", line 964, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+  File "/opt/conda/lib/python3.7/subprocess.py", line 1716, in _communicate
+    self._check_timeout(endtime, orig_timeout, stdout, stderr)
+  File "/opt/conda/lib/python3.7/subprocess.py", line 1011, in _check_timeout
+    stderr=b''.join(stderr_seq) if stderr_seq else None)
+subprocess.TimeoutExpired: Command '['nvidia-smi', '--query-gpu=name,uuid,memory.total,memory.used,utilization.gpu', '--format=csv,noheader,nounits']' timed out after 30 seconds
