@@ -1,29 +1,13 @@
-# QueryBalanced ViT-L/14 with a frozen multiscale local head
+# IRRA-QB-ViT-L14-FrozenMultiScaleLocalAttr
 
-This is a separate five-epoch experiment. It restores the original
-QueryBalanced ViT-L/14 Epoch 2 state_dict, freezes every original parameter,
-and updates only `multiscale.*` and `local_branch.*`.
+이 5 Epoch 실험은 완료된 QueryBalanced Epoch 2 Checkpoint를 불러옵니다. 기존 모델을 고정하고 기존 multiscale/local Attribute 모듈을 학습합니다.
 
-The added head reads ViT-L/14 visual tokens after blocks 8, 16, and 24. Blocks
-8 and 16 are LayerNormed and projected from 1024 to the 768-dimensional joint
-space. Block 24 uses the original CLIP LayerNorm/projection. The three patch
-sets are fused with trainable softmax weights initialized to 0.2/0.2/0.6. A
-40-query, 8-head local attribute branch is trained with `0.5 * BCEWithLogits`.
+QueryBalanced 학습이 끝난 뒤 저장소 루트에서 다음 명령을 실행하세요.
 
-Global retrieval, text prompts/tokenization, image transforms, validation
-metric code, and base model definitions come from the ViT-L/14 project. The
-CLIP ViT-L/14 positional grid remains 27x9 for the 378x126 input. The copied
-VisionTransformer implementation only adds optional extraction of blocks 8
-and 16; the standard global path is unchanged.
+```bash
+bash scripts/train_pipeline.sh frozen
+```
 
-`configs/frozen_localattr_e5.json` records the exact source checkpoint, its
-SHA256, training configuration, data root, and validation fusion policy. The
-shared dataset is referenced through `data_root`; no dataset or pretrained
-weights are copied here. Every epoch checkpoint is a plain full inference
-model `state_dict()` containing the frozen base and the trained local modules.
+파이프라인은 가장 최근에 완료된 QueryBalanced Run을 찾아 Epoch 2 Checkpoint의 SHA-256을 계산합니다. 해당 Checkpoint의 메타데이터와 GPU UUID를 연결한 Run별 Config를 만든 뒤, 기존 CUDA Batch-32 사전 검사와 Checkpoint 출처 검증을 수행합니다. 검증을 통과한 경우에만 Frozen 학습을 시작합니다.
 
-Run `scripts/preflight.py` first. Actual training is allowed only after its
-CUDA Batch-32 preflight has passed and the assigned GPU is unoccupied. Start
-`scripts/train_frozen.py` from a fresh default tmux session with the successful
-preflight report path. The trainer saves exactly `epoch_001.pth` through
-`epoch_005.pth` and exits normally after Epoch 5 validation and strict reload.
+전체 학습 절차와 결과 경로는 저장소 [학습 안내](../README.md)를 참고하세요. 기존 학습 설정은 `configs/frozen_localattr_e5.json`에 그대로 있습니다.
